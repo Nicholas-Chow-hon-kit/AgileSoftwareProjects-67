@@ -5,9 +5,16 @@
         class="d-flex flex-wrap align-items-center justify-content-md-between p-1"
       >
         <div class="col d-flex align-items-center col-md-auto">
-          <div class="burger-menu"> 
-            <button href="#" class="rounded-pill border-0 nav-link btn px-2 mt-2">
-              <i class="fa-solid fa-bars" aria-label="sidebar menu" style="font-size: 1.2rem;" ></i>
+          <div class="burger-menu">
+            <button
+              href="#"
+              class="rounded-pill border-0 nav-link btn px-2 mt-2"
+            >
+              <i
+                class="fa-solid fa-bars"
+                aria-label="sidebar menu"
+                style="font-size: 1.2rem"
+              ></i>
             </button>
           </div>
           <a href="/">
@@ -15,7 +22,7 @@
               src="/images/FoodHavenLogoPlusWords.png"
               width="180"
               class="ms-2"
-              alt="Food Haven"
+              alt="Food Haven Logo"
               style="padding-top: 0px"
             />
           </a>
@@ -24,51 +31,63 @@
         <div
           class="searchBar col col-md-6 col-lg-5 d-none d-md-flex align-items-center justify-content-center"
         >
-        <form action="/search" method="GET" style="width: 90%">
-          <div class="input-group col-10" >
-            <input
-              type="text"
-              name="query" 
-              class="form-control border-2 rounded-pill rounded-end"
-              placeholder="Search"
-              aria-label="Search"
-              aria-describedby="search-addon"
-              style="
-                border-top-left-radius: 0;
-                border-bottom-left-radius: 0;
-                border-color: #ced4da;
-              "
-            />
-            <div class="input-group-append">
-              <button
-                type="submit" 
-                class="input-group-text rounded-pill rounded-start border-2 h-100"
-                id="search-addon"
+          <form action="/search" method="GET" style="width: 90%">
+            <div class="input-group col-10">
+              <input
+                type="text"
+                name="query"
+                class="form-control border-2 rounded-pill rounded-end"
+                placeholder="Search"
+                aria-label="Search"
+                aria-describedby="search-addon"
                 style="
                   border-top-left-radius: 0;
                   border-bottom-left-radius: 0;
                   border-color: #ced4da;
-                  padding-left: 8px;
-                  padding-right: -8px;
                 "
-              >
-                <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
-              </button>
+              />
+              <div class="input-group-append">
+                <button
+                  type="submit"
+                  class="input-group-text rounded-pill rounded-start border-2 h-100"
+                  id="search-addon"
+                  style="
+                    border-top-left-radius: 0;
+                    border-bottom-left-radius: 0;
+                    border-color: #ced4da;
+                    padding-left: 8px;
+                    padding-right: -8px;
+                  "
+                >
+                  <i
+                    class="fa-solid fa-magnifying-glass"
+                    aria-hidden="true"
+                  ></i>
+                </button>
+              </div>
             </div>
-          </div>
-        </form>
-        
-
+          </form>
         </div>
 
         <ul class="nav col-md-auto d-flex align-items-center">
           <li class="nav-item">
-            <a href="/create-new-recipe" class="rounded-pill nav-link btn mt-2" style="font-size:1.5rem;">
-              <i class="fa-solid fa-square-plus text-center" aria-label="upload recipe"></i>
+            <a
+              href="/create-new-recipe"
+              class="rounded-pill nav-link btn mt-2"
+              style="font-size: 1.5rem"
+            >
+              <i
+                class="fa-solid fa-square-plus text-center"
+                aria-label="upload recipe"
+              ></i>
             </a>
           </li>
           <li class="nav-item">
-            <a href="/profile" class="rounded-pill nav-link btn mt-2" style="font-size:1.5rem;">
+            <a
+              href="/profile"
+              class="rounded-pill nav-link btn mt-2"
+              style="font-size: 1.5rem"
+            >
               <i class="fa-solid fa-circle-user" aria-label="user profile"></i>
             </a>
           </li>

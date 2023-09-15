@@ -4,18 +4,18 @@
     <%- include('head.ejs') %>
   </head>
   <body>
-    <div class=" d-flex justify-content-end mt-2">
-      <a href="landing" style="text-decoration: none; margin-right: 2%;">
+    <div class="d-flex justify-content-end mt-2">
+      <a href="landing" style="text-decoration: none; margin-right: 2%">
         <p>Back</p>
       </a>
     </div>
     <div class="container d-flex justify-content-center">
-      <div class="col-md-8 col-lg-3" style="margin-top: -4%; ">
+      <div class="col-md-8 col-lg-3" style="margin-top: -4%">
         <form action="/login" method="POST">
           <img
             src="/images/FoodHavenLogoBlack.png"
             class="img-fluid"
-            alt="Sample image"
+            alt="Food Haven Logo"
           />
           <!-- Username input -->
           <div class="form-outline mb-4">
@@ -29,7 +29,7 @@
               required
             />
           </div>
-        
+
           <!-- Password input -->
           <div class="form-outline mb-3">
             <label class="form-label fw-bold" for="password">Password: </label>
@@ -43,13 +43,10 @@
             />
           </div>
 
-          <div class="error-message mb-3" style="color: red;">
-            <% if(messages.error) {%>
-              <%= messages.error %>
-            <% } %>
+          <div class="error-message mb-3" style="color: red">
+            <% if(messages.error) {%> <%= messages.error %> <% } %>
           </div>
-          
-        
+
           <div class="d-flex justify-content-between align-items-center">
             <!-- Checkbox -->
             <div class="form-check mb-0">
@@ -66,17 +63,21 @@
             </div>
             <a href="#!" class="text-body">Forgot password?</a>
           </div>
-          
-          <div class="text-center text-lg-start mt-2 pt-2 login-button" style="display: flex; flex-direction: column; align-items: center;">
+
+          <div
+            class="text-center text-lg-start mt-2 pt-2 login-button"
+            style="display: flex; flex-direction: column; align-items: center"
+          >
             <button
               type="submit"
               class="btn btn-primary btn-lg"
-              style="width: 40%;"
+              style="width: 40%"
             >
               Login
             </button>
             <p class="small fw-bold mt-2 pt-1 mb-2">
-              Don't have an account? <a href="register" class="link-danger">Register here!</a>
+              Don't have an account?
+              <a href="register" class="link-danger">Register here!</a>
             </p>
           </div>
         </form>
