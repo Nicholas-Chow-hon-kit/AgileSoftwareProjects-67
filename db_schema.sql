@@ -9,15 +9,8 @@ CREATE TABLE IF NOT EXISTS recipes (
   Instructions TEXT,
   Image_Name TEXT,
   Cleaned_Ingredients TEXT,
-  Is_Chicken INTEGER DEFAULT 0, 
-  Is_Beef INTEGER DEFAULT 0,
-  Is_Pork INTEGER DEFAULT 0,
-  Is_Seafood INTEGER DEFAULT 0,
-  Is_Vegetarian INTEGER DEFAULT 0,
-  Total_Likes INTEGER DEFAULT 0,
   user_id INTEGER, -- id to connect recipes to the user
-   FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE -- Foreign key relationship with users with cascade deletion
-  FOREIGN KEY (user_id) REFERENCES users(id) -- Foreign key relationship with users,
+  FOREIGN KEY (user_id) REFERENCES users(id) -- Foreign key relationship with users
 );
 
 CREATE TABLE IF NOT EXISTS users (
@@ -68,16 +61,3 @@ BEGIN
   SET posts = posts - 1
   WHERE users.id = OLD.user_id;
 END;
-
--- Create trigger for total likes, rank by most to least likes
-CREATE TRIGGER IF NOT EXISTS total_likes 
-AFTER INSERT ON user_likes
-FOR EACH ROW
-BEGIN
-  UPDATE recipes
-  SET Total_Likes = (SELECT COUNT(*) FROM user_likes WHERE recipe_id = NEW.recipe_id)
-  WHERE recipes.id = NEW.recipe_id;
-END; 
-
-
-

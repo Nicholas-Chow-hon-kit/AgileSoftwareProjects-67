@@ -3,93 +3,50 @@
 
 <head>
   <%- include('head.ejs') %>
+</head>
 
-    <style>
-      .alert {
-        padding: 10px;
-        background-color: #32803c;
-        color: white;
-        opacity: 0;
-        /* Start with opacity set to 0 */
-        transition: opacity 0.5s;
-        /* Add a transition for opacity */
-      }
-
-      .closebtn {
-        margin-left: 15px;
-        color: white;
-        font-weight: bold;
-        float: right;
-        font-size: 22px;
-        line-height: 20px;
-        cursor: pointer;
-        transition: 1s;
-      }
-
-      .closebtn:hover {
-        color: black;
-      }
-    </style>
+<head>
+  <%- include('head.ejs') %>
 </head>
 
 <body>
   <%- include('navigation.ejs') %> <%- include('sidebar.ejs') %>
       <div class="page-content page-no-sidebar">
-        <div class="container mt-5 mb-5">
+        <div class="container mt-5 mb-3">
           <div class="row justify-content-start">
             <div class="col-md-6">
-
-              <!-- Notification when changes are successfully saved -->
-              <div class="alert" id="settingsUpdatedAlert">
-                <span class="closebtn" onclick="hideSettingsUpdatedAlert();">&times;</span>
-                <strong>Settings updated!</strong> Your changes have been successfully saved.
-              </div>
-
-              <!-- Account Settings -->
               <h2 class="mb-4">Account Settings</h2>
               <div class="text-start">
                 <i class="bi bi-person-circle" style="font-size: 5rem;"></i>
               </div>
-
-              <form id="settingsForm" method="POST" action="/update-settings">
-
-                <!-- First name -->
+              <form method="POST" action="/update-settings">
                 <div class="mb-3">
                   <label for="firstName" class="form-label">First Name</label>
                   <input type="text" class="form-control" id="firstName" placeholder="Enter your First Name"
                     value="<%= userProfile.firstName %>" name="firstName" />
                 </div>
-
-                <!-- Last name -->
                 <div class="mb-3">
                   <label for="lastName" class="form-label">Last Name</label>
                   <input type="text" class="form-control" id="lastName" placeholder="Enter your Last Name"
                     value="<%= userProfile.lastName %>" name="lastName" />
                 </div>
-
-                <!-- Username -->
                 <div class="mb-3">
                   <label for="username" class="form-label">Username</label>
                   <input type="text" class="form-control" id="username" placeholder="Enter your Username"
                     value="<%= userProfile.username %>" name="username" />
                 </div>
-
-                <!-- Bio -->
                 <div class="mb-3">
                   <label for="bio" class="form-label">Bio</label>
                   <textarea class="form-control" id="bio" rows="8" placeholder="Enter your bio"
                     name="bio"><%= userProfile.bio %></textarea>
                 </div>
-
-                <!-- Save button -->
-                <button type="submit" class="btn btn-primary">
+                <button type="submit" class="btn btn-primary" onclick="settingsUpdated()">
                   Save Changes
                 </button>
               </form>
-
-              <!-- Delete account button -->
               <div class="mt-4 text-start">
-                <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteAccountModal">
+                <a href="#" class="btn btn-danger">Log Out</a>
+                <button class="btn btn-danger ms-2" data-bs-toggle="modal" data-bs-target="#deleteAccountModal">
                   Delete Account
                 </button>
               </div>
@@ -116,11 +73,9 @@
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
                   Cancel
                 </button>
-                <form method="POST" action="/delete-account">
-                  <button type="submit" class="btn btn-danger">Delete
-                    Account</button>
-                </form>
-
+                <button type="button" class="btn btn-danger">
+                  Delete Account
+                </button>
               </div>
             </div>
           </div>
@@ -129,39 +84,11 @@
       <%- include('footer.ejs') %>
         <div class="black-overlay"></div>
         <!-- page scripts -->
-
         <script>
           function settingsUpdated() {
-            showSettingsUpdatedAlert();
+            alert("Settings updated.")
           }
         </script>
-
-        <script>
-          function showSettingsUpdatedAlert() {
-            const alert = document.getElementById("settingsUpdatedAlert");
-            alert.style.display = "block"; // Reset display to "block" before showing the alert
-            setTimeout(() => {
-              alert.style.opacity = "1"; // Set opacity to 1 to show the alert
-            }, 10); // Use a small delay to ensure the display property is updated first
-            console.log("showing");
-          }
-
-          function hideSettingsUpdatedAlert() {
-            const alert = document.getElementById("settingsUpdatedAlert");
-            alert.style.opacity = "0"; // Set opacity to 0 to hide the alert
-            setTimeout(() => {
-              // alert.style.display = "none"; // After the transition, hide the alert
-            }, 500); // Adjust the time to match the transition duration (500ms in this case)
-            console.log("hiding");
-          }
-
-
-          document.getElementById("settingsForm").addEventListener("submit", function (event) {
-            event.preventDefault(); // Prevents the default form submission behavior
-            settingsUpdated(); // Call function to show the alert
-          });
-        </script>
-
         <script src="/scripts/sidebar.js">
         </script>
 </body>
