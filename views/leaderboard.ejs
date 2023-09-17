@@ -2,6 +2,8 @@
 <html lang="en">
   <head>
     <%- include('head.ejs') %>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
   </head>
   <body>
     <%- include('navigation.ejs') %> <%- include('sidebar.ejs') %>
@@ -10,77 +12,40 @@
             <h1 class="text-center">Leaderboard: Overall</h1>
             <h6 class="text-center">Ranked by number of likes</h6>
 
-            <h4 class="text-center">Viewing Leaderboard for: </h4>
-            <div class= "btn text-center">
-                <button class="btn btn-primary" type="button" id="groupButtons">
-                    Chicken
-                </button>
-                <button class="btn btn-primary" type="button" id="groupButtons">
-                    Beef
-                </button>
-                <button class="btn btn-primary" type="button" id="groupButtons">
-                    Pork
-                </button>
-                <button class="btn btn-primary" type="button" id="groupButtons">
-                    Seafood
-                </button>
-                <button class="btn btn-primary" type="button" id="groupButtons">
-                    Vegetarian
-                </button>
-                <p></p>
-                <button class="btn btn-primary" type="button" id="groupButtons">
-                    Dessert
-                </button>
-                 
-                
+          <!--  <h4 class="text-center">Viewing Leaderboard for:
+            
+              <div class="category-buttons">
+                <button class="category-button btn btn-primary" data-category="Beef">Chicken</button>
+                <button class="category-button btn btn-primary" data-category="Beef">Beef</button>
+                <button class="category-button btn btn-primary" data-category="Pork">Pork</button>
+                <button class="category-button btn btn-primary" data-category="Seafood">Seafood</button>
+                <button class="category-button btn btn-primary" data-category="Vegetarian">Vegetarian</button>
             </div>
-
+              -->
             </div>
         <div class="container-lg pt-2">
         <div class= "leaderboard-info mb-4 row g-0 border">
-            <div class= "col-sm-2 p-2">
-                <h3> Index </h3>
-                <div class="container-lg">
-                        </div>
-                
-             </div>
 
              <div class= "leaderboard-recipes col p-2 d-flex flex-column">
                 <h3> All Recipes </h3>
                 <div class="container-lg">
+                    
                     <% recipes.forEach(function(recipe){ %>
                     <div class="p-2"> <%- include('leaderboard-content.ejs', {recipe}); %> </div> 
                     <% }); %>
-                
+                    
                 </div> 
-    
-            
-            </div>
-            <div class= "likes col-lg-2 d-flex flex-column p-3">
-                <h3> Likes </h3>
-                <div class="container-lg">
+            </div> 
 
-                    <% recipes.forEach(function(recipe){ %>
-                    <%- include('likes-content.ejs', {recipe}); %> 
-                    <% }); %>
-                    </div>
-            </div>
-
-                <button class="btn btn-primary"> Comments </button> 
-                
-            </div>
+         </div>
         </div>
-        </div>
-
-
+    </div>
         <%- include('footer.ejs') %> 
         </div>
         <div class="black-overlay"></div>
             <!-- page scripts -->
     <script src="/scripts/sidebar.js"></script>
-
+    <script src="/scripts/likes.js"></script>
     
-    
-    </script>
   </body>
   </html>
