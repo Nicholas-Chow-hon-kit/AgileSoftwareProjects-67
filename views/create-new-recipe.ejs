@@ -8,10 +8,10 @@
     <div class="page-content page-no-sidebar">
       <div class="container my-4 p-4">
         <h1 class="text-center">Upload Your Recipe</h1>
-        <form class="mt-4">
+        <form method="POST" action="/user/creating-new-recipe" class="mt-4">
           <div class="mb-3">
             <label for="recipeTitle" class="form-label">Recipe Title</label>
-            <input type="text" class="form-control" id="recipeTitle" required />
+            <input type="text" class="form-control" id="recipeTitle" name="recipeTitle" required />
           </div>
 
           <div class="mb-5 mt-5">
@@ -20,33 +20,14 @@
               <!-- Ingredient Input Template -->
               <li class="list-group-item">
                 <div class="input-group">
-                  <select class="form-select ingredient-select" required>
-                    <option value="" disabled selected>
-                      Select an ingredient
-                    </option>
-                    <option value="ingredient1">Ingredient 1</option>
-                    <option value="ingredient2">Ingredient 2</option>
-                    <!-- Add more ingredients as needed -->
-                  </select>
-                  <input
-                    type="text"
-                    class="form-control measurement-input"
-                    placeholder="Measurement"
-                    required
-                  />
-                  <button
-                    type="button"
-                    class="btn btn-secondary btn-remove-ingredient"
-                  >
+                  <input type="text" class="form-control ingredient-input" placeholder="1 tablespoon of oil" name="ingredientsList" required/>
+                  <button type="button" class="btn btn-secondary btn-remove-ingredient">
                     Remove
                   </button>
                 </div>
               </li>
             </ul>
-            <button
-              type="button"
-              class="btn btn-primary btn-add-ingredient mt-2 float-end"
-            >
+            <button type="button" class="btn btn-primary btn-add-ingredient mt-2 float-end">
               Add Ingredient
             </button>
           </div>
@@ -57,38 +38,23 @@
               <!-- Instruction Input Template -->
               <li class="list-group-item">
                 <div class="input-group">
-                  <textarea
-                    class="form-control instruction-input h-100"
-                    rows="2"
-                    placeholder="Enter instruction"
-                    required
-                  ></textarea>
+                  <textarea class="form-control instruction-input h-100" rows="2" placeholder="Enter instruction" name="instructionsList" required ></textarea>
                   <button
                     type="button"
-                    class="btn btn-secondary btn-remove-instruction"
-                  >
+                    class="btn btn-secondary btn-remove-instruction" >
                     Remove
                   </button>
                 </div>
               </li>
             </ul>
-            <button
-              type="button"
-              class="btn btn-primary btn-add-instruction mt-2 float-end"
-            >
+            <button type="button" class="btn btn-primary btn-add-instruction mt-2 float-end" >
               Add Instruction
             </button>
           </div>
 
           <div class="mb-3 mt-5">
             <label for="image" class="form-label">Recipe Image</label>
-            <input
-              type="file"
-              class="form-control"
-              id="image"
-              accept="image/*"
-              required
-            />
+            <input type="file" class="form-control" id="image" accept="image/*" name="imageInput" required />
             <div id="image-preview" class="mt-2"></div>
           </div>
           <div class="mb-3 text-center">
@@ -112,16 +78,11 @@
           const inputGroup = document.createElement("div");
           inputGroup.className = "input-group";
 
-          const measurementInput = document.createElement("input");
-          measurementInput.type = "text";
-          measurementInput.className = "form-control measurement-input";
-          measurementInput.placeholder = "Measurement";
-          measurementInput.required = true;
-
           const ingredientInput = document.createElement("input");
           ingredientInput.type = "text";
           ingredientInput.className = "form-control ingredient-input";
           ingredientInput.placeholder = "Ingredient";
+          ingredientInput.name = "ingredientsList";
           ingredientInput.required = true;
 
           const removeButton = document.createElement("button");
@@ -132,13 +93,12 @@
             newIngredientItem.remove();
           });
 
-          inputGroup.appendChild(measurementInput);
           inputGroup.appendChild(ingredientInput);
           inputGroup.appendChild(removeButton);
           newIngredientItem.appendChild(inputGroup);
           ingredientsList.insertBefore(
             newIngredientItem,
-            ingredientsList.firstChild
+            ingredientsList.lastChild
           );
         });
 
@@ -158,6 +118,7 @@
           instructionInput.className = "form-control instruction-input";
           instructionInput.rows = "2";
           instructionInput.placeholder = "Enter instruction";
+          instructionInput.name = "instructionsList";
           instructionInput.required = true;
 
           const removeButton = document.createElement("button");
@@ -173,7 +134,7 @@
           newInstructionItem.appendChild(inputGroup);
           instructionsList.insertBefore(
             newInstructionItem,
-            instructionsList.firstChild
+            instructionsList.lastChild
           );
         });
 

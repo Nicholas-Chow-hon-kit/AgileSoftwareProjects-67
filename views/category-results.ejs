@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <%- include('head.ejs') %>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+</head>
+
+<body>  
+    <%- include('navigation.ejs') %> <%- include('sidebar.ejs') %>
+    <div class="page-content page-no-sidebar">
+        <div class= "mx-auto"  style="width: 450px;">
+            <h1 class="text-center">Leaderboard: Overall</h1>
+            <h6 class="text-center">Ranked by number of likes</h6>
+
+            <h4 class="text-center">Viewing Leaderboard for: </h4>
+
+            <div class= "text-center">
+                <!-- Category Buttons -->
+            <div class="category-buttons">
+                <button class="category-button btn btn-primary" data-category="Chicken">Chicken</button>
+                <button class="category-button btn btn-primary" data-category="Beef">Beef</button>
+                <button class="category-button btn btn-primary" data-category="Pork">Pork</button>
+                <button class="category-button btn btn-primary" data-category="Seafood">Seafood</button>
+                <button class="category-button btn btn-primary" data-category="Vegetarian">Vegetarian</button>
+            </div>
+            </div>
+        </div>
+    <div class="container-lg pt-2">
+        <div class= "leaderboard-info mb-4 row g-0 border">
+
+             <div class= "leaderboard-recipes col p-2 d-flex flex-column">
+                <h3> All Recipes </h3>
+                <div class="container-lg ">
+                    
+                    <% categoryResults.forEach(function(recipe){ %>
+                    <div class="p-2"> <%- include('leaderboard-content.ejs', {recipe}); %> </div> 
+                    <% }); %>
+                      <!-- Container for Category Recipes -->
+                    <div class="category-recipes-container"></div>
+                </div> 
+            </div> 
+
+         </div>
+        </div>
+    
+    </div>
+        <%- include('footer.ejs') %> 
+    <script src="/scripts/sidebar.js"></script>
+    <script src="/scripts/likes.js"></script>
+    <script>
+     
+
+    $(document).ready(function () {
+    let page = 1;
+    const categoryRecipesContainer = $('.category-recipes-container');
+
+    function loadCategoryRecipes(category) {
+        categoryRecipesContainer.empty();
+        page = 1;
+
+        $.ajax({
+        url: `/category/${category}`,
+        method: 'GET',
+        success: function (data) {
+            if (data.categoryResults > 0) {
+                data.categoryResults.forEach(function (recipe) {
+                    $.get(`/category-results`, { recipe }, function (recipeHtml) {
+                        categoryRecipesContainer.append(recipeHtml);
+                });
+            });
+            page++;
+            }
+           
+        },
+        error: function (error) {
+            console.log(`Error loading ${category} recipes:`, error);
+        },
+        });
+    }
+
+     // Event handler for category buttons
+     $('.category-button').click(function () {
+            const selectedCategory = $(this).data('category');
+            loadCategoryRecipes(selectedCategory);
+        });
+
+
+    $(window).scroll(function () {
+            //-200 is needed to deal with the network latency so that we start loading the content before we reach the bottom
+            if (window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 200) {
+                const selectedCategory = $('.active').data('category'); // Get the active category button's data-category value
+                loadCategoryRecipes(selectedCategory); // Load more recipes for the selected category
+                console.log("bottom");
+            }
+        });
+});
+
+
+</script>
+
+
+</body>
+
+</html>

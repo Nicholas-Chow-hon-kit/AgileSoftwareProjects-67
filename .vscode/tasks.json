@@ -1,0 +1,32 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "npm",
+			"script": "clean-db",
+			"problemMatcher": [],
+			"label": "npm: clean-db",
+			"detail": "del database.db && del sessions.db",
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			}
+		},
+		{
+			"type": "npm",
+			"script": "build-db",
+			"group": "build",
+			"problemMatcher": [],
+			"label": "npm: build-db",
+			"detail": "sqlite3 ./database.db < ./db_schema.sql"
+		},
+		{
+			"type": "npm",
+			"script": "install",
+			"group": "build",
+			"problemMatcher": [],
+			"label": "npm: install",
+			"detail": "install dependencies from package"
+		}
+	]
+}
